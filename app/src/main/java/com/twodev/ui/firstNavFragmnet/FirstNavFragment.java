@@ -38,7 +38,7 @@ public class FirstNavFragment extends Fragment {
         mViewModel.mResultLiveData.observe(getActivity(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
+            //    Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
             }
         });
 
