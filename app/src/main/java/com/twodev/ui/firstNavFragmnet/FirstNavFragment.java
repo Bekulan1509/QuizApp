@@ -1,5 +1,6 @@
 package com.twodev.ui.firstNavFragmnet;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.twodev.quizapp.R;
@@ -19,6 +22,11 @@ import com.twodev.quizapp.R;
 public class FirstNavFragment extends Fragment {
 
     private FirstNavViewModel mViewModel;
+    private SeekBar seekBar;
+    private TextView textView;
+    private TextView textViewPlus;
+    private TextView textViewMinus;
+    private TextView textViewCount;
 
     public static FirstNavFragment newInstance() {
         return new FirstNavFragment();
@@ -31,17 +39,45 @@ public class FirstNavFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        seekBar = view.findViewById(R.id.seekBar);
+        textView = view.findViewById(R.id.text_count);
+        textViewCount = view.findViewById(R.id.count);
+        textViewPlus = view.findViewById(R.id.plus);
+        textViewMinus = view.findViewById(R.id.minus);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                textView.setText("Question amount: " + i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(FirstNavViewModel.class);
-        mViewModel.test();
+       // mViewModel.test();
+        mViewModel.plusMinusWorking(textViewPlus,textViewMinus);
         mViewModel.mResultLiveData.observe(getActivity(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-            //    Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
+                textViewCount.setText(s);
+                //Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
             }
         });
 
     }
-
 }
