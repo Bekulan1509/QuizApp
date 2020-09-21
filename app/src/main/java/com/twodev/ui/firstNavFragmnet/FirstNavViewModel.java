@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 
 public class FirstNavViewModel extends ViewModel {
     public MutableLiveData<String> mResultLiveData = new MutableLiveData<>();
+    public MutableLiveData<String> mResultLiveDataSeekBar = new MutableLiveData<>();
     private int count = 0;
 
     public void test() {
@@ -22,6 +23,28 @@ public class FirstNavViewModel extends ViewModel {
             mResultLiveData.setValue(result);
         }
 
+    }
+
+
+
+    public void seekBarWorking(SeekBar seekBar){
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                Log.d("tag1", "onProgressChanged: "+i);
+                mResultLiveDataSeekBar.setValue(String.valueOf(i));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     public void plusMinusWorking(TextView t1, TextView t2) {

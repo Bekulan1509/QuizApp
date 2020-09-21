@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,27 +43,12 @@ public class FirstNavFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         seekBar = view.findViewById(R.id.seekBar);
-        textView = view.findViewById(R.id.text_count);
+        textView = view.findViewById(R.id.TV_amount);
         textViewCount = view.findViewById(R.id.count);
         textViewPlus = view.findViewById(R.id.plus);
         textViewMinus = view.findViewById(R.id.minus);
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                textView.setText("Question amount: " + i);
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
     }
 
     @Override
@@ -70,7 +56,17 @@ public class FirstNavFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(FirstNavViewModel.class);
        // mViewModel.test();
+
+        mViewModel.seekBarWorking(seekBar);
+        mViewModel.mResultLiveDataSeekBar.observe(getActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                textView.setText("Question amount: " +s);
+            }
+        });
+
         mViewModel.plusMinusWorking(textViewPlus,textViewMinus);
+
         mViewModel.mResultLiveData.observe(getActivity(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
