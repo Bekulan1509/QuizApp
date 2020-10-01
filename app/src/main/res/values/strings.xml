@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">QuizApp</string>
+    <string-array name="categoryes">
+        <item>All</item>
+        <item>Animals</item>
+        <item>Cityes</item>
+        <item>something special</item>
+    </string-array>
+
+    <string-array name="difficulty">
+        <item>All</item>
+        <item>Hard</item>
+        <item>easy</item>
+        <item>normal</item>
+    </string-array>
+
+
 </resources>

@@ -47,21 +47,5 @@ public class FirstNavViewModel extends ViewModel {
         });
     }
 
-    public void plusMinusWorking(TextView t1, TextView t2) {
 
-        t1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                count++;
-                mResultLiveData.setValue(String.valueOf(count));
-            }
-        });
-        t2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                count--;
-                mResultLiveData.setValue(String.valueOf(count));
-            }
-        });
-    }
 }
