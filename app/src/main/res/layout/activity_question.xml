@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+<import type="android.view.View"/>
+
         <variable
             name="questionActivity"
             type="com.twodev.ui.QuestionActivity" />
+
+
+
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.twodev.ui.QuestionActivity">
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_question"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        tools:context="com.twodev.ui.QuestionActivity">
 
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_marginRight="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:id="@+id/pos_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressbar"
+            android:layout_centerHorizontal="true"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_question"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/pos_TV"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="696dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </RelativeLayout>
 </layout>

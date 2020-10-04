@@ -1,19 +1,20 @@
 package com.twodev.ui.firstNavFragmnet;
 
 import android.util.Log;
-import android.view.View;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import org.w3c.dom.Text;
+import com.twodev.data.network.QuizApiService;
+import com.twodev.models.CategoryModel;
+import com.twodev.models.QuizModel;
+import com.twodev.App.QuizApp;
 
 public class FirstNavViewModel extends ViewModel {
     public MutableLiveData<String> mResultLiveData = new MutableLiveData<>();
     public MutableLiveData<String> mResultLiveDataSeekBar = new MutableLiveData<>();
-    private int count = 0;
+    public MutableLiveData<CategoryModel> mCategories = new MutableLiveData<>();
+    public MutableLiveData<QuizModel> mQuestions = new MutableLiveData<>();
 
     public void test() {
         String result;
@@ -24,24 +25,16 @@ public class FirstNavViewModel extends ViewModel {
         }
 
     }
+    public void spinnerAdding() {
 
-
-
-    public void seekBarWorking(SeekBar seekBar){
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        QuizApp.quizApiService.getCategory(new QuizApiService.QuizCallBackCategory() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                Log.d("tag1", "onProgressChanged: "+i);
-                mResultLiveDataSeekBar.setValue(String.valueOf(i));
+            public void onSuccess(CategoryModel categoryModel) {
+                mCategories.setValue(categoryModel);
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onFailure(Throwable Exception) {
 
             }
         });

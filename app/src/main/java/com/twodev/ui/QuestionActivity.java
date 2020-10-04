@@ -9,41 +9,54 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.twodev.Adapters.QuestionRecyclerAdapter;
 import com.twodev.interfaces.OnItemClick;
-import com.twodev.models.QuestionModel;
+import com.twodev.models.QuizModel;
 import com.twodev.quizapp.R;
 import com.twodev.quizapp.databinding.ActivityQuestionBinding;
-import com.twodev.ui.QuestionViewModel;
-
-import java.util.List;
 
 public class QuestionActivity extends AppCompatActivity implements OnItemClick {
     ActivityQuestionBinding binding;
     QuestionRecyclerAdapter adapter;
     QuestionViewModel questionViewModel;
+    Integer posSeekBar;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         questionViewModel = ViewModelProviders.of(this).get(QuestionViewModel.class);
+
+        Integer posCategorySpnr = getIntent().getIntExtra("keyPos", 0);
+        posSeekBar = getIntent().getIntExtra("keyPosSeekBar", 0);
+        String difficultySpnr = getIntent().getStringExtra("keyDifficultySpnr");
+        questionViewModel.gettingQuestions(posCategorySpnr, posSeekBar, difficultySpnr);
+        questionViewModel.mQuestions.observe(this, new Observer<QuizModel>() {
+            @Override
+            public void onChanged(QuizModel quizModel) {
+                Log.e("tag1", "onChanged: " + quizModel.getResults());
+                adapter.setList(quizModel.getResults());
+            }
+        });
+
+
+
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_question);
         binding.setQuestionActivity(this);
         binding.getRoot();
         adapter = new QuestionRecyclerAdapter();
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(binding.recyclerViewQuestion);
-        questionViewModel.listMutableLiveData.observe(this, new Observer<List<QuestionModel>>() {
-            @Override
-            public void onChanged(List<QuestionModel> questionModels) {
-                adapter.setList(questionModels);
-            }
-        });
-        questionViewModel.addingList();
+
+        binding.posTV.setText(0 + "/" + posSeekBar);
+
         binding.recyclerViewQuestion.setAdapter(adapter);
         binding.recyclerViewQuestion.setLayoutManager(new LinearLayoutManager(this) {
             @Override
@@ -57,11 +70,17 @@ public class QuestionActivity extends AppCompatActivity implements OnItemClick {
             }
         });
         adapter.setOnItemClick(this);
-
     }
 
     @Override
     public void onClick(int position) {
-        binding.recyclerViewQuestion.scrollToPosition(position+1);
+        binding.progressbar.setMax(posSeekBar);
+        binding.progressbar.setProgress(binding.progressbar.getProgress() + 1);
+        binding.recyclerViewQuestion.scrollToPosition(position + 1);
+
+        binding.posTV.setText(position+1+ "/" + posSeekBar);
+
     }
+
+
 }

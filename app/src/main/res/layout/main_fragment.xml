@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="question amount: "
+        android:text="question amount: 10"
         app:layout_constraintBottom_toTopOf="@+id/seekBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image" />
@@ -92,7 +92,11 @@
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TV_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_amount"
+        android:progress="10"
+        android:max="50"
+
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

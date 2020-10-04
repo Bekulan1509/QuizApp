@@ -1,17 +1,17 @@
 <resources>
     <string name="app_name">QuizApp</string>
     <string-array name="categoryes">
-        <item>All</item>
+        <item>General Knowledge</item>
         <item>Animals</item>
         <item>Cityes</item>
         <item>something special</item>
     </string-array>
 
     <string-array name="difficulty">
-        <item>All</item>
+        <item>Any Difficulty </item>
+        <item>Easy</item>
+        <item>Medium</item>
         <item>Hard</item>
-        <item>easy</item>
-        <item>normal</item>
     </string-array>
 
 
