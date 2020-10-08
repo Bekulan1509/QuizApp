@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="resultActivity"
+            type="com.twodev.ui.resultActivity.ResultActivity" />
+    </data>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context="com.twodev.ui.resultActivity.ResultActivity">
+
+    <TextView
+        android:id="@+id/result_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp"
+        android:text="Result"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="33dp" />
+
+    <ImageView
+        android:id="@+id/image_mask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/result_TV"
+        android:layout_centerHorizontal="true"
+
+        android:src="@drawable/ic_mask" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_result"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_below="@+id/image_mask"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginRight="6dp"
+        android:elevation="75dp"
+        android:outlineSpotShadowColor="@android:color/black">
+
+        <TextView
+            android:id="@+id/category_result_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:text="Category: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/correct_answers_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="Correct answers: " />
+
+        <TextView
+            android:id="@+id/correct_answers_amount_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="27dp"
+            android:text="8/10"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <TextView
+            android:id="@+id/difficulty_result_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:layout_marginLeft="16dp"
+            android:text="Difficulty: " />
+
+        <TextView
+            android:id="@+id/difficulty_type_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="27dp"
+            android:text="easy"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <TextView
+            android:id="@+id/result_procantage_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="16dp"
+
+            android:text="Result " />
+
+        <TextView
+            android:id="@+id/question_pocentage_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:layout_marginTop="27dp"
+            android:layout_marginRight="22dp"
+            android:text="80%"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardView_result"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="60dp"
+        android:background="@drawable/custom_button_finish"
+        android:text="Finish"
+        android:textColor="@android:color/white" />
+
+
+</RelativeLayout>
+</layout>

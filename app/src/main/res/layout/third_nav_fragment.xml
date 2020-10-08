@@ -1,13 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.twodev.ui.thirdNavFragment.ThirdNavFragment">
 
     <TextView
+        android:id="@+id/textView_settings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="third" />
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="35dp" />
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="56dp"
+        android:id="@+id/card_view_1_cv"
+        android:layout_below="@+id/textView_settings"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:id="@+id/share_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share this App"
+            android:layout_gravity="center_vertical"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/ic_history_strelka"
+            />
 
-</FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_2_cv"
+        android:layout_marginTop="1dp"
+        android:layout_below="@+id/card_view_1_cv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+    <TextView
+        android:id="@+id/rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rate Us"
+        android:layout_gravity="center_vertical"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right|center_vertical"
+        android:src="@drawable/ic_history_strelka"
+        />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_3_cv"
+        android:layout_marginTop="1dp"
+        android:layout_below="@+id/card_view_2_cv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:id="@+id/feedback_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Leave feedback"
+            android:layout_gravity="center_vertical"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/ic_history_strelka"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_4_cv"
+        android:layout_marginTop="1dp"
+        android:layout_below="@+id/card_view_3_cv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:id="@+id/clear_history_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clear history"
+            android:textColor="#BE52F2"
+            android:layout_gravity="center_vertical"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/ic_history_strelka"
+            />
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

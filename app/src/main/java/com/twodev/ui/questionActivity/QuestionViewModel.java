@@ -1,4 +1,4 @@
-package com.twodev.ui;
+package com.twodev.ui.questionActivity;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

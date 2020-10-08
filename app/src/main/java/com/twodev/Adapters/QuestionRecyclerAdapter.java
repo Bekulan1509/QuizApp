@@ -19,6 +19,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.twodev.interfaces.OnItemClick;
 import com.twodev.models.Result;
+import com.twodev.quizapp.R;
 import com.twodev.quizapp.databinding.QuestionViewHolderBinding;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ import static com.twodev.quizapp.R.*;
 
 public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecyclerAdapter.QuestionViewHolder> {
     private List<Result> list = new ArrayList<>();
+
+    private float counter;
+
 
     public void setList(List<Result> list) {
         this.list = list;
@@ -52,7 +56,10 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
     @Override
     public void onBindViewHolder(@NonNull QuestionViewHolder holder, int position) {
         holder.onBind(list.get(position));
+
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -72,27 +79,40 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
             binding.answerTrueTV.setOnClickListener(this);
             binding.answerFalseTV.setOnClickListener(this);
 
-
         }
 
         @SuppressLint("ClickableViewAccessibility")
         public void onBind(Result result) {
             binding.setResult(result);
+            mOnItemClickListener.result(result);
+            Log.d("tag1", "flag: " + result.getCheckStateFlag());
 
 
             if (result.getType().equals("multiple")) {
                 binding.linearContainer.setVisibility(View.GONE);
                 binding.constraintContainer.setVisibility(View.VISIBLE);
+
                 binding.answer1TV.setBackgroundColor(Color.WHITE);
                 binding.answer2TV.setBackgroundColor(Color.WHITE);
                 binding.answer3TV.setBackgroundColor(Color.WHITE);
                 binding.answer4TV.setBackgroundColor(Color.WHITE);
+
                 binding.answer2TV.setText(result.getIncorrectAnswers().get(0));
                 binding.answer3TV.setText(result.getIncorrectAnswers().get(1));
                 binding.answer4TV.setText(result.getIncorrectAnswers().get(2));
-                Log.e("tag1", "onBindCheck: true");
+                Log.e("tag1", "onBindCheck: multiple");
+
+
+                if (result.getCheckStateFlag()) {
+                    binding.answer1TV.setBackgroundColor(Color.GREEN);
+                    animation(binding.answer2TV);
+                    animation(binding.answer3TV);
+                    animation(binding.answer4TV);
+                  buttonEnabled(false);
+                }
+
             } else {
-                Log.e("tag1", "onBindCheck: false");
+                Log.e("tag1", "onBindCheck:true & false");
                 binding.constraintContainer.setVisibility(View.GONE);
                 binding.linearContainer.setVisibility(View.VISIBLE);
                 binding.answerTrueTV.setBackgroundColor(Color.WHITE);
@@ -100,16 +120,24 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
 
                 if (result.getCorrectAnswer().equals("True")) {
                     binding.answerTrueTV.setText("Yes");
-                } else
+                } else {
                     binding.answerTrueTV.setText("No");
-
-                Log.e("tag1", "checking: "+result.getIncorrectAnswers().get(0));
-
-                if (result.getIncorrectAnswers().get(0).equals("False")){
+                }
+                if (result.getIncorrectAnswers().get(0).equals("False")) {
                     binding.answerFalseTV.setText("No");
-                }else
+                } else {
                     binding.answerFalseTV.setText("Yes");
+                }
+                if (result.getCheckStateFlag()) {
+                    binding.answerTrueTV.setBackgroundColor(Color.GREEN);
+                    animation(binding.answerFalseTV);
+                    binding.answerTrueTV.setEnabled(false);
+                    binding.answerFalseTV.setEnabled(false);
+                }
+
             }
+
+
             setColor(binding.answer1TV, Color.BLUE);
             setColor(binding.answer2TV, Color.BLUE);
             setColor(binding.answer3TV, Color.BLUE);
@@ -144,28 +172,34 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
 
         @Override
         public void onClick(View view) {
-
             switch (view.getId()) {
                 case id.answer1_TV:
                     binding.answer1TV.setBackgroundColor(Color.GREEN);
+                    counter++;
                     break;
+
                 case id.answer2_TV:
                     animation(binding.answer2TV);
                     break;
+
                 case id.answer3_TV:
                     animation(binding.answer3TV);
                     break;
+
                 case id.answer4_TV:
                     animation(binding.answer4TV);
                     break;
+
                 case id.answerTrue_TV:
+                    counter++;
                     binding.answerTrueTV.setBackgroundColor(Color.GREEN);
                     break;
+
                 case id.answerFalse_TV:
                     animation(binding.answerFalseTV);
                     break;
-
             }
+            mOnItemClickListener.count(counter);
             customTimer();
 
         }
@@ -179,6 +213,7 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
             new CountDownTimer(1100, 100) {
                 @Override
                 public void onTick(long l) {
+
                 }
 
                 @Override
@@ -187,5 +222,13 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
                 }
             }.start();
         }
+        public void buttonEnabled(boolean b){
+            binding.answer1TV.setEnabled(b);
+            binding.answer2TV.setEnabled(b);
+            binding.answer3TV.setEnabled(b);
+            binding.answer4TV.setEnabled(b);
+        }
+
+
     }
 }

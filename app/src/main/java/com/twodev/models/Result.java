@@ -2,6 +2,7 @@
 package com.twodev.models;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -25,6 +26,30 @@ public class Result {
     @SerializedName("incorrect_answers")
     @Expose
     private List<String> incorrectAnswers = null;
+
+    private Boolean checkStateFlag = false;
+
+    private int counter=0;
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public boolean isCheckStateFlag() {
+        return checkStateFlag;
+    }
+
+    public Boolean getCheckStateFlag() {
+        return checkStateFlag;
+    }
+
+    public void setCheckStateFlag(Boolean checkStateFlag) {
+        this.checkStateFlag = checkStateFlag;
+    }
 
     public String getCategory() {
         return category;

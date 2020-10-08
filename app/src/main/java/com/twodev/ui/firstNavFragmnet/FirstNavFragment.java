@@ -5,8 +5,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,7 +26,7 @@ import com.twodev.models.CategoryModel;
 import com.twodev.models.TriviaCategory;
 import com.twodev.quizapp.R;
 import com.twodev.quizapp.databinding.MainFragmentBinding;
-import com.twodev.ui.QuestionActivity;
+import com.twodev.ui.questionActivity.QuestionActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +40,8 @@ public class FirstNavFragment extends Fragment implements AdapterView.OnItemSele
     MainFragmentBinding binding;
     public Integer pos;
     public String difficultySpnr;
-    public Integer posSeekBar=10;
+    public Integer posSeekBar = 10;
+    private String textCategory;
 
     public static FirstNavFragment newInstance() {
         return new FirstNavFragment();
@@ -103,8 +102,7 @@ public class FirstNavFragment extends Fragment implements AdapterView.OnItemSele
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 Log.d("tag1", "onProgressChanged: " + i);
                 textView.setText("Question amount: " + i);
-
-                    posSeekBar = i;
+                posSeekBar = i;
             }
 
             @Override
@@ -139,6 +137,8 @@ public class FirstNavFragment extends Fragment implements AdapterView.OnItemSele
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                             pos = i + 9;
+                             textCategory = spinnerCategory.getSelectedItem().toString();
+                            Log.d("tag1", "onItemSelected: "+ textCategory);
                         }
 
                         @Override
@@ -167,6 +167,7 @@ public class FirstNavFragment extends Fragment implements AdapterView.OnItemSele
         Log.e("ololo", "buttonStart: ololo");
         Intent intent = new Intent(getContext(), QuestionActivity.class);
         intent.putExtra("keyPos", pos);
+        intent.putExtra("keyTextCategory", textCategory);
         intent.putExtra("keyPosSeekBar", posSeekBar);
         intent.putExtra("keyDifficultySpnr", difficultySpnr);
         startActivity(intent);

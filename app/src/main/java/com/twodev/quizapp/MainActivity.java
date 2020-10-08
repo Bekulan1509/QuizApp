@@ -89,4 +89,6 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(ThirdNavFragment.newInstance());
         viewPager.setAdapter(pagerAdapter);
     }
+
+
 }
