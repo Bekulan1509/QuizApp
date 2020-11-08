@@ -50,7 +50,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_question"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="380dp"
             android:layout_below="@+id/pos_TV"
             android:layout_margin="16dp"
             android:orientation="horizontal"
@@ -63,8 +63,8 @@
             android:layout_below="@+id/recycler_view_question"
             android:layout_centerHorizontal="true"
             android:layout_margin="60dp"
-            android:background="@drawable/custom_button_question"
             android:text="Skip"
+            android:background="@drawable/custom_button_question"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@android:color/white"
 

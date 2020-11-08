@@ -137,8 +137,8 @@ public class FirstNavFragment extends Fragment implements AdapterView.OnItemSele
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                             pos = i + 9;
-                             textCategory = spinnerCategory.getSelectedItem().toString();
-                            Log.d("tag1", "onItemSelected: "+ textCategory);
+                            textCategory = spinnerCategory.getSelectedItem().toString();
+                            Log.d("tag1", "onItemSelected: " + textCategory);
                         }
 
                         @Override

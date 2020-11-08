@@ -1,6 +1,8 @@
 
 package com.twodev.models;
 
+import android.text.BoringLayout;
+
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
@@ -27,28 +29,34 @@ public class Result {
     @Expose
     private List<String> incorrectAnswers = null;
 
-    private Boolean checkStateFlag = false;
+    private Boolean isVisible = false;
+    private int chosen=99;
+    private boolean backClickedCheck = false;
 
-    private int counter=0;
 
-    public int getCounter() {
-        return counter;
+
+    public boolean isBackClickedCheck() {
+        return backClickedCheck;
     }
 
-    public void setCounter(int counter) {
-        this.counter = counter;
+    public void setBackClickedCheck(boolean backClickedCheck) {
+        this.backClickedCheck = backClickedCheck;
     }
 
-    public boolean isCheckStateFlag() {
-        return checkStateFlag;
+    public int getChosen() {
+        return chosen;
     }
 
-    public Boolean getCheckStateFlag() {
-        return checkStateFlag;
+    public void setChosen(int chosen) {
+        this.chosen = chosen;
     }
 
-    public void setCheckStateFlag(Boolean checkStateFlag) {
-        this.checkStateFlag = checkStateFlag;
+    public Boolean getVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(Boolean visible) {
+        isVisible = visible;
     }
 
     public String getCategory() {

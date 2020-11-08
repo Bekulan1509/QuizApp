@@ -3,26 +3,24 @@ package com.twodev.ui.firstNavFragmnet;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.twodev.data.network.QuizApiService;
+import com.twodev.interfaces.IQuizApiClient;
 import com.twodev.models.CategoryModel;
 import com.twodev.App.QuizApp;
 
 public class FirstNavViewModel extends ViewModel {
-    public MutableLiveData<String> mResultLiveData = new MutableLiveData<>();
     public MutableLiveData<CategoryModel> mCategories = new MutableLiveData<>();
 
 
-
     public void spinnerAdding() {
-        QuizApp.quizApiService.getCategory(new QuizApiService.QuizCallBackCategory() {
+        QuizApp.quizRepository.getCategory(new IQuizApiClient.CategoryCallBack() {
             @Override
-            public void onSuccess(CategoryModel categoryModel) {
-                mCategories.setValue(categoryModel);
+            public void onSuccess(CategoryModel result) {
+                mCategories.setValue(result);
             }
 
             @Override
-            public void onFailure(Throwable Exception) {
-
+            public void onFailure(Exception e) {
+                e.printStackTrace();
             }
         });
     }

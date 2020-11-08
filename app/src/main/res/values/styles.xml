@@ -12,4 +12,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/Rose</item>
     </style>
+    <dimen name="cardViewSize">45dp</dimen>
+    <dimen name="textSize">16sp</dimen>
 </resources>

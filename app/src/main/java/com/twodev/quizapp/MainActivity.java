@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         viewPager.setCurrentItem(1);
                         break;
                     case R.id.third_ic_bt_nav:
-                        viewPager.setCurrentItem(3);
+                        viewPager.setCurrentItem(2);
                         break;
                 }
                 return false;
